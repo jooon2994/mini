@@ -1,9 +1,45 @@
-<!-- Sample product display -->
-{% for product in products %}
-    <div class="product">
-        <img src="{{ product.image_url }}" alt="{{ product.name }}">
-        <h3>{{ product.name }}</h3>
-        <p>${{ product.price }}</p>
-        <button class="add-to-cart" data-product-id="{{ product.id }}">Add to Cart</button>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to AHADU MARKET</title>
+    <link rel="stylesheet" href="/static/assets/style.css"> <!-- Updated path -->
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <h1>ShopEasy</h1>
+            </div>
+            <div class="icons">
+                <div class="account-icon">
+                    <a href="/register"><img src="/static/assets/account-icon.png" alt="Account"></a>
+                </div>
+                <div class="cart-icon">
+                    <a href="#"><img src="/static/assets/cart-icon.png" alt="Cart"><span id="cart-count">0</span></a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div id="product-list">
+        <!-- Products will be dynamically loaded here -->
     </div>
-{% endfor %}
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="hidden">
+        <div class="modal-content">
+            <h2>Your Cart</h2>
+            <div id="cart-items"></div>
+            <button id="checkout-button">Proceed to Checkout</button>
+            <button id="close-cart">Close</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/static/assets/script.js"></script> <!-- Updated path -->
+</body>
+</html>
