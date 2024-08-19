@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to AHADU MARKET</title>
     <link rel="stylesheet" href="../assets/style.css"> <!-- Updated path -->
 </head>
+
 <body>
     <!-- Navigation Bar -->
     <nav>
@@ -26,7 +28,59 @@
 
     <!-- Main Content -->
     <div id="product-list">
-        <!-- Products will be dynamically loaded here -->
+        <!-- Product 1 -->
+        <div class="product-card">
+            <img src="../assets/images/Blue Black Modern Neon Podium New Arrival Smartphone Sale Instagram Post.png" alt="Product 1">
+            <h3>Product 1</h3>
+            <p>Description for Product 1</p>
+            <p><strong>Price: 500 Br</strong></p>
+            <button onclick="addToCart('Product 1', 500)">Add to Cart</button>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product-card">
+            <img src="../assets/images/product1.png" alt="Product 2">
+            <h3>Product 2</h3>
+            <p>Description for Product 2</p>
+            <p><strong>Price: 750 Br</strong></p>
+            <button onclick="addToCart('Product 2', 750)">Add to Cart</button>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-card">
+            <img src="../assets/images/product2.png" alt="Product 3">
+            <h3>Product 3</h3>
+            <p>Description for Product 3</p>
+            <p><strong>Price: 1200 Br</strong></p>
+            <button onclick="addToCart('Product 3', 1200)">Add to Cart</button>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="product-card">
+            <img src="../assets/images/product3.png" alt="Product 4">
+            <h3>Product 4</h3>
+            <p>Description for Product 4</p>
+            <p><strong>Price: 950 Br</strong></p>
+            <button onclick="addToCart('Product 4', 950)">Add to Cart</button>
+        </div>
+
+        <!-- Product 5 -->
+        <div class="product-card">
+            <img src="../assets/images/photo_2024-05-27_09-37-28.jpg" alt="Product 5">
+            <h3>Product 5</h3>
+            <p>Description for Product 5</p>
+            <p><strong>Price: 1300 Br</strong></p>
+            <button onclick="addToCart('Product 5', 1300)">Add to Cart</button>
+        </div>
+
+        <!-- Product 6 -->
+        <div class="product-card">
+            <img src="../assets/images/product1.png" alt="Product 6">
+            <h3>Product 6</h3>
+            <p>Description for Product 6</p>
+            <p><strong>Price: 800 Br</strong></p>
+            <button onclick="addToCart('Product 6', 800)">Add to Cart</button>
+        </div>
     </div>
 
     <!-- Cart Modal -->
@@ -40,6 +94,25 @@
     </div>
 
     <!-- Scripts -->
+    <script>
+        window.Telegram.WebApp.ready(); // Initialize Telegram WebApp
+
+        // Get user info
+        const user = window.Telegram.WebApp.initDataUnsafe?.user;
+
+        if (user) {
+            console.log(`Hello ${user.first_name}!`);
+            // You can now display the user's info or send it to your backend for further processing
+        }
+
+        function addToCart(productName, price) {
+            // Implement your cart logic here
+            console.log(`Added ${productName} to cart for ${price} Br`);
+            // Update cart count or open the cart modal
+        }
+    </script>
+
     <script src="../assets/script.js"></script> <!-- Updated path -->
 </body>
+
 </html>
