@@ -1,118 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to AHADU MARKET</title>
-    <link rel="stylesheet" href="../assets/style.css"> <!-- Updated path -->
+    <title>AHADU MARKET - Mini App</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script> <!-- Telegram API -->
 </head>
-
 <body>
-    <!-- Navigation Bar -->
-    <nav>
-        <div class="nav-container">
-            <div class="logo">
-                <h1>AHADU MARKET</h1>
-            </div>
+    <!-- App Wrapper -->
+    <div id="app">
+        <!-- Header with Navigation Icons -->
+        <header>
+            <h1>AHADU MARKET</h1>
             <div class="icons">
-                <div class="account-icon">
-                    <a href="/register"><img src="../assets/account-icon.png" alt="Account"></a>
-                </div>
-                <div class="cart-icon">
-                    <a href="#"><img src="../assets/cart-icon.png" alt="Cart"><span id="cart-count">0</span></a>
-                </div>
+                <img src="../assets/account-icon.png" alt="Account" class="icon" onclick="showSection('account')">
+                <img src="../assets/cart-icon.png" alt="Cart" class="icon" onclick="showSection('cart')">
             </div>
-        </div>
-    </nav>
+        </header>
 
-    <!-- Main Content -->
-    <div id="product-list">
-        <!-- Product 1 -->
-        <div class="product-card">
-            <img src="../assets/images/Blue Black Modern Neon Podium New Arrival Smartphone Sale Instagram Post.png" alt="Product 1">
-            <h3>Product 1</h3>
-            <p>Description for Product 1</p>
-            <p><strong>Price: 500 Br</strong></p>
-            <button onclick="addToCart('Product 1', 500)">Add to Cart</button>
-        </div>
+        <!-- Main Content Sections -->
+        <section id="home" class="content-section active">
+            <h2>Product List</h2>
+            <div id="product-list" class="product-list">
+                <!-- Product cards will be dynamically injected here -->
+            </div>
+        </section>
 
-        <!-- Product 2 -->
-        <div class="product-card">
-            <img src="../assets/images/product1.png" alt="Product 2">
-            <h3>Product 2</h3>
-            <p>Description for Product 2</p>
-            <p><strong>Price: 750 Br</strong></p>
-            <button onclick="addToCart('Product 2', 750)">Add to Cart</button>
-        </div>
-
-        <!-- Product 3 -->
-        <div class="product-card">
-            <img src="../assets/images/product2.png" alt="Product 3">
-            <h3>Product 3</h3>
-            <p>Description for Product 3</p>
-            <p><strong>Price: 1200 Br</strong></p>
-            <button onclick="addToCart('Product 3', 1200)">Add to Cart</button>
-        </div>
-
-        <!-- Product 4 -->
-        <div class="product-card">
-            <img src="../assets/images/product3.png" alt="Product 4">
-            <h3>Product 4</h3>
-            <p>Description for Product 4</p>
-            <p><strong>Price: 950 Br</strong></p>
-            <button onclick="addToCart('Product 4', 950)">Add to Cart</button>
-        </div>
-
-        <!-- Product 5 -->
-        <div class="product-card">
-            <img src="../assets/images/photo_2024-05-27_09-37-28.jpg" alt="Product 5">
-            <h3>Product 5</h3>
-            <p>Description for Product 5</p>
-            <p><strong>Price: 1300 Br</strong></p>
-            <button onclick="addToCart('Product 5', 1300)">Add to Cart</button>
-        </div>
-
-        <!-- Product 6 -->
-        <div class="product-card">
-            <img src="../assets/images/product1.png" alt="Product 6">
-            <h3>Product 6</h3>
-            <p>Description for Product 6</p>
-            <p><strong>Price: 800 Br</strong></p>
-            <button onclick="addToCart('Product 6', 800)">Add to Cart</button>
-        </div>
-    </div>
-
-    <!-- Cart Modal -->
-    <div id="cart-modal" class="hidden">
-        <div class="modal-content">
+        <section id="cart" class="content-section hidden">
             <h2>Your Cart</h2>
             <div id="cart-items"></div>
-            <button id="checkout-button">Proceed to Checkout</button>
-            <button id="close-cart">Close</button>
-        </div>
+            <button id="checkout-button" class="btn">Proceed to Checkout</button>
+            <button class="btn" onclick="showSection('home')">Back to Home</button>
+        </section>
+
+        <section id="account" class="content-section hidden">
+            <h2>Your Account</h2>
+            <!-- User Info Form -->
+            <form id="account-form" class="hidden">
+                <label for="user-name-input">Name:</label>
+                <input type="text" id="user-name-input" placeholder="Enter your name" required>
+                
+                <label for="user-phone-input">Phone:</label>
+                <input type="tel" id="user-phone-input" placeholder="Enter your phone number" required>
+                
+                <label for="user-address-input">Address:</label>
+                <input type="text" id="user-address-input" placeholder="Enter your address" required>
+                
+                <button type="submit" class="btn">Save</button>
+            </form>
+        
+            <!-- Display User Info -->
+            <div id="account-info">
+                <p>Name: <span id="user-name-display"></span></p>
+                <p>Phone: <span id="user-phone-display"></span></p>
+                <p>Address: <span id="user-address-display"></span></p>
+                <button id="edit-account" class="btn">Edit Info</button>
+            </div>
+        
+            <button class="btn" onclick="showSection('home')">Back to Home</button>
+        </section>
+        
+
+        <!-- Footer Navigation -->
+        <footer>
+            <button class="nav-btn" onclick="showSection('home')">Home</button>
+            <button class="nav-btn" onclick="showSection('cart')">Cart</button>
+            <button class="nav-btn" onclick="showSection('account')">Account</button>
+        </footer>
     </div>
 
     <!-- Scripts -->
-    <script>
-        window.Telegram.WebApp.ready(); // Initialize Telegram WebApp
-
-        // Get user info
-        const user = window.Telegram.WebApp.initDataUnsafe?.user;
-
-        if (user) {
-            console.log(`Hello ${user.first_name}!`);
-            // You can now display the user's info or send it to your backend for further processing
-        }
-
-        function addToCart(productName, price) {
-            // Implement your cart logic here
-            console.log(`Added ${productName} to cart for ${price} Br`);
-            // Update cart count or open the cart modal
-        }
-    </script>
-
-    <script src="../assets/script.js"></script> <!-- Updated path -->
+    <script src="app.js"></script>
 </body>
-
 </html>
